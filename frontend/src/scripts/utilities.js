@@ -7,3 +7,19 @@ export const emptyField = (props) => {
     return false;
 }
 
+export const fullNameValidate = (name) => {
+    if(name === '') {
+        return false;
+    }
+
+    if(name.length < 6) {
+        return false;
+    }
+    
+    const exp = /^[A-Za-z]+\s?[A-Za-z]$/;
+    if(!name.match(exp)) {
+        return false;
+    }
+
+    return true;
+}
