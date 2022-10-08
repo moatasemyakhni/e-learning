@@ -72,7 +72,7 @@ const Login = () => {
         </section>
     ) : ( 
         <div>
-            <p ref={errorRef} className={errorMessage ? "error-msg": "view-none"} aria-live="assertive">{errorMessage}</p>
+            <p ref={errorRef} className={errorMessage ? "error-msg": "view-hidden"} aria-live="assertive">{errorMessage}</p>
             <form onSubmit={loginSubmit}>
                 <label htmlFor="email">Email:</label>
                 <input

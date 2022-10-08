@@ -1,5 +1,5 @@
 import {useRef, useState, useEffect} from 'react';
-import {baseUrl, emptyField, fullNameValidate, emailValidation, passwordValidate, passwordMatchValidate} from '../scripts/utilities';
+import {baseUrl, emptyField, fullNameValidate, passwordValidate, passwordMatchValidate, emailValidate} from '../scripts/utilities';
 
 
 function Signup() {
@@ -8,20 +8,14 @@ function Signup() {
     const errorRef = useRef();
     
     const [fullName, setFullName] = useState('');
-    const [validName, setValidName] = useState(false);
-    const [fullNameFocus, setFullNameFocus] = useState(false);
 
     const [email, setEmail] = useState('');
-    const [validEmail, setValidEmail] = useState(false);
-    const [emailFocus, setEmailFocus] = useState(false);
+
+    const [type, setType] = useState('student');
 
     const [password, setPassword] = useState('');
-    const [validPassword, setValidPassword] = useState(false);
-    const [passwordFocus, setPasswordFocus] = useState(false);
 
     const [passwordConfirm, setPasswordConfirm] = useState('');
-    const [validPasswordConfirm, setValidPasswordConfirm] = useState(false);
-    const [passwordFocusConfirm, setPasswordFocusConfirm] = useState(false);
 
     // message is not viewed by default
     const [errorMessage, setErrorMessage] = useState('');
@@ -31,32 +25,130 @@ function Signup() {
         fullNameRef.current.focus();
     }, []);
 
-    useEffect(() => {
-        const result = fullNameValidate(fullName);
-        setValidName(result);
-    }, [fullName]);
 
-    useEffect(() => {
-        const result = emailValidation(email);
-        setValidEmail(result);
-    }, [email]);
+const signupForm = async (e) => {
+    e.preventDefault();
+    const allInputvalue = {
+        name: fullName,
+        email: email,
+        password: password,
+        passwordConfirm: passwordConfirm,
+    }
+    if(emptyField(allInputvalue)) {
+        setErrorMessage('All Fields are required');
+        setSuccess(false)
+        return;
+    }
+    if(!fullNameValidate(fullName)) {
+        setErrorMessage('name is at least 6 chars, e.g: John smith');
+        setSuccess(false);
+        return;
+    }
 
-    useEffect(() => {
-        const result = passwordValidate(password);
-        setValidPassword(result);
-        const match = passwordMatchValidate(password, passwordConfirm);
-        setValidEmail(match);
-    }, [password, passwordConfirm]);
+    if(!emailValidate(email)) {
+        setErrorMessage('wrong email format');
+        setSuccess(false);
+        return;
+    }
 
-    useEffect(() => {
+    if(!passwordValidate(password)) {
+        setErrorMessage('password is at least 6 chars');
+        setSuccess(false);
+        return;
+    }
 
-    }, [fullName, email, password, passwordConfirm]);
+    if(!passwordMatchValidate(password, passwordConfirm)) {
+        setErrorMessage('Passwords do not match');
+        setSuccess(false);
+        return;
+    }
+
+    if(type !== "admin" && type !== "instructor" && type !== "student") {
+        setErrorMessage('wrong option in select');
+        setSuccess(false);
+        return;
+    }
+}
+
   return (
     <>
-        <div>Register</div>
+        {success ? (
+        <section>
+            <h1>You are being redirected</h1>
+            <p>
+                Waiting...
+            </p>
+        </section>
+    ) : ( 
+        <div>
+            <p ref={errorRef} className={errorMessage ? "error-msg": "view-hidden"} aria-live="assertive">{errorMessage}</p>
+            <h1>Register</h1>
+            <form onSubmit={signupForm}>
+                <label htmlFor='fullName'>
+                    fullName:
+                </label>
+                <input 
+                    type="text"
+                    id="fullName"
+                    ref={fullNameRef}
+                    onChange = {(e) => setFullName(e.target.value)}
+                    required
+                    />
 
+                    {/* email input */}
+                    <label htmlFor='email'>
+                    Email:
+                </label>
+                <input 
+                    type="email"
+                    id="email"
+                    onChange = {(e) => setEmail(e.target.value)}
+                    required
+                    />
+
+                {/* password */}
+                <label htmlFor='password'>
+                    Password:
+                </label>
+                <input 
+                    type="password"
+                    id="password"
+                    onChange = {(e) => setPassword(e.target.value)}
+                    required
+                    />
+
+                {/* password Confirm */}
+                <label htmlFor='password-repeat'>
+                    Confirm Password:
+                </label>
+                <input 
+                    type="password"
+                    id="password-repeat"
+                    onChange = {(e) => setPasswordConfirm(e.target.value)}
+                    required
+                    />
+
+                {/* type */}
+                <label htmlFor='user-type'>
+                    Type:
+                </label>
+                <select name='type' id='type' defaultValue={type} onChange={(e) => setType(e.target.value)}>
+                    <option value="student">Student</option>
+                    <option value="instructor">Instructor</option>
+                    <option value="admin">Admin</option>
+                </select>
+
+                <button>Sign Up</button>
+            </form>
+            <p>Already have an account?</p>
+            {/* need a route */}
+            <a href="#">Login</a>
+        </div>
+    )}
     </>
   )
 }
+Signup.defaultProps = {
 
+}
 export default Signup

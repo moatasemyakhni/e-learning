@@ -1,7 +1,7 @@
 export const baseUrl = "http://127.0.0.1:8000/api";
 
 export const emptyField = (props) => {
-    if(props.name === '' || props.password === '') {
+    if(props.name === '' || props.email === '' || props.password === '' || props.passwordConfirm === '') {
         return true;
     }
     return false;
@@ -24,7 +24,7 @@ export const fullNameValidate = (name) => {
     return true;
 }
 
-export const emailValidation = (email) => {
+export const emailValidate = (email) => {
     const exp = /^(\w([\.-]?\w)*)+@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if(!email.match(exp)) {
         return false;
