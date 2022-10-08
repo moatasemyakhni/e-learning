@@ -18,7 +18,9 @@ function Signup() {
     const [validPassword, setValidPassword] = useState(false);
     const [passwordFocus, setPasswordFocus] = useState(false);
 
-    
+    // message is not viewed by default
+    const [errorMessage, setErrorMessage] = useState('');
+    const [success, setSuccess] = useState(false);
   return (
     <>
         <div>Register</div>
