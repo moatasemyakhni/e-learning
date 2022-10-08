@@ -18,9 +18,8 @@ class AuthController extends Controller {
                 "message" => 'Register failed',
                 "error" => true,
             ]);
-        
-        
         }
+
     }
 
     public function registerRequirements() {
@@ -28,8 +27,12 @@ class AuthController extends Controller {
             'name' => "string|required",
             "email" => "email|required",
             "password" => "string|min:6|max:255",
+            'type' => "required",
         ]);
-
+        $type = request()->get('type');
+        if($type != 'admin' && $type != 'instructor' && $type != 'student') {
+            return false;
+        }
         if($validator->fails()) {
             return false;
         }
