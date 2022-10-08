@@ -97,7 +97,7 @@ const Login = () => {
             </form>
             <p>Need an Account?</p>
             {/* need a route */}
-            <a href="#">Sign Up</a>
+            <a href="/signup">Sign Up</a>
         </div>
         )}
     </>

@@ -142,7 +142,7 @@ const signupForm = async (e) => {
             </form>
             <p>Already have an account?</p>
             {/* need a route */}
-            <a href="#">Login</a>
+            <a href="/">Login</a>
         </div>
     )}
     </>
