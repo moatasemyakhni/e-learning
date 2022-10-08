@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useRef, useState, useEffect } from "react";
 import {baseUrl, emptyField} from "../scripts/utilities";
+import Button from "./Button";
 import FormTitle from "./FormTitle";
 import WaitingSection from "./WaitingSection";
 
@@ -8,6 +9,7 @@ const Login = () => {
     // set focus when error occur
     const emailRef = useRef();
     const errorRef = useRef();
+    const buttonRef = useRef();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -34,7 +36,7 @@ const Login = () => {
         const formData = new FormData();
         formData.append('email', email);
         formData.append('password', password);
-
+        buttonRef.current.disabled = true;
         try {
             const user = await checkUser(formData);
             if(!user.error) {
@@ -51,6 +53,8 @@ const Login = () => {
         } catch(err) {
             setErrorMessage("Server is not responding");
             setSuccess(false);
+        }finally {
+            buttonRef.current.disabled = false;
         }
        
     }
@@ -97,7 +101,7 @@ const Login = () => {
                     />
                 </div>
 
-                <button className="btn btn-form">Login</button>
+                <Button btnRef={buttonRef} text='Login' />
             </form>
             <p className="form-link">Need an Account?</p>
             {/* need a route */}

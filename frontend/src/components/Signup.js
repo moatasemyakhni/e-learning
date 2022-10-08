@@ -2,12 +2,15 @@ import axios from 'axios';
 import {useRef, useState, useEffect} from 'react';
 import {baseUrl, emptyField, fullNameValidate, passwordValidate, passwordMatchValidate, emailValidate} from '../scripts/utilities';
 import WaitingSection from './WaitingSection';
+import FormTitle from "./FormTitle";
+import Button from './Button';
 
 
 function Signup() {
     // set focus on load
     const fullNameRef = useRef();
     const errorRef = useRef();
+    const buttonRef = useRef();
     
     const [fullName, setFullName] = useState('');
 
@@ -70,6 +73,7 @@ const signupForm = async (e) => {
         setSuccess(false);
         return;
     }
+    buttonRef.current.disabled = true;
     const formData = new FormData();
     formData.append('email', email);
     try {
@@ -83,7 +87,10 @@ const signupForm = async (e) => {
         setErrorMessage('Server is not responding');
         setSuccess(false);
         return;
+    }finally {   
+        buttonRef.current.disabled = false;
     }
+    buttonRef.current.disabled = true;
     formData.append('name', fullName);
     formData.append('password', password);
     formData.append('type', type);
@@ -108,6 +115,8 @@ const signupForm = async (e) => {
         setErrorMessage('Server is not responding');
         setSuccess(false);
         return;
+    }finally {
+        buttonRef.current.disabled = false;
     }
 }
 
@@ -131,69 +140,83 @@ const registerAccount = async (dataForm) => {
         <WaitingSection />
     ) : ( 
         <div>
+            <FormTitle titleName="Register"/>
             <p ref={errorRef} className={errorMessage ? "error-msg": "view-hidden"} aria-live="assertive">{errorMessage}</p>
-            <h1>Register</h1>
-            <form onSubmit={signupForm}>
+            <form className="form" onSubmit={signupForm}>
                 {/* name input */}
-                <label htmlFor='fullName'>
-                    fullName:
-                </label>
-                <input 
-                    type="text"
-                    id="fullName"
-                    ref={fullNameRef}
-                    onChange = {(e) => setFullName(e.target.value)}
-                    required
-                    />
+                <div>
+                    <label htmlFor='fullName'>
+                        fullName:
+                    </label>
+                    <input 
+                        type="text"
+                        id="fullName"
+                        ref={fullNameRef}
+                        onChange = {(e) => setFullName(e.target.value)}
+                        required
+                        className='input'
+                        />
+                </div>
 
-                    {/* email input */}
+                {/* email input */}
+                <div>
                     <label htmlFor='email'>
-                    Email:
-                </label>
-                <input 
-                    type="email"
-                    id="email"
-                    onChange = {(e) => setEmail(e.target.value)}
-                    required
+                        Email:
+                    </label>
+                    <input 
+                        type="email"
+                        id="email"
+                        onChange = {(e) => setEmail(e.target.value)}
+                        required
+                        className='input'
                     />
+                </div>
 
                 {/* password */}
-                <label htmlFor='password'>
-                    Password:
-                </label>
-                <input 
-                    type="password"
-                    id="password"
-                    onChange = {(e) => setPassword(e.target.value)}
-                    required
-                    />
+                <div>
+                    <label htmlFor='password'>
+                        Password:
+                    </label>
+                    <input 
+                        type="password"
+                        id="password"
+                        onChange = {(e) => setPassword(e.target.value)}
+                        required
+                        className='input'
+                        />
+                </div>
 
                 {/* password Confirm */}
-                <label htmlFor='password-repeat'>
-                    Confirm Password:
-                </label>
-                <input 
-                    type="password"
-                    id="password-repeat"
-                    onChange = {(e) => setPasswordConfirm(e.target.value)}
-                    required
-                    />
+                <div>
+                    <label htmlFor='password-repeat'>
+                        Confirm Password:
+                    </label>
+                    <input 
+                        type="password"
+                        id="password-repeat"
+                        onChange = {(e) => setPasswordConfirm(e.target.value)}
+                        required
+                        className='input'
+                        />
+                </div>
 
                 {/* type */}
-                <label htmlFor='user-type'>
-                    Type:
-                </label>
-                <select name='type' id='type' defaultValue={type} onChange={(e) => setType(e.target.value)}>
-                    <option value="student">Student</option>
-                    <option value="instructor">Instructor</option>
-                    <option value="admin">Admin</option>
-                </select>
+                <div>
+                    <label htmlFor='user-type'>
+                        Type:
+                    </label>
+                    <select className='input' name='type' id='type' defaultValue={type} onChange={(e) => setType(e.target.value)}>
+                        <option value="student">Student</option>
+                        <option value="instructor">Instructor</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
 
-                <button>Sign Up</button>
+                <Button btnRef={buttonRef} text="Signup" />
             </form>
-            <p>Already have an account?</p>
+            <p className='form-link'>Already have an account?</p>
             {/* need a route */}
-            <a href="/">Login</a>
+            <a className='form-link' href="/">Login</a>
         </div>
     )}
     </>
