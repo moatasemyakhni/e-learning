@@ -16,10 +16,17 @@ export const fullNameValidate = (name) => {
         return false;
     }
     
-    const exp = /^[A-Za-z]+\s?[A-Za-z]$/;
+    const exp = /^[A-Za-z]+\s?[A-Za-z]+$/;
     if(!name.match(exp)) {
         return false;
     }
 
+    return true;
+}
+
+export const passwordValidate = (pwd) => {
+    if(pwd.length < 6) {
+        return false;
+    }
     return true;
 }
