@@ -30,3 +30,10 @@ export const passwordValidate = (pwd) => {
     }
     return true;
 }
+
+export const passwordMatchValidate = (pwd, pwdRepeat) => {
+    if(pwd !== pwdRepeat) {
+        return false;
+    }
+    return true;
+}
