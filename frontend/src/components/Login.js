@@ -1,4 +1,6 @@
+import axios from "axios";
 import { useRef, useState, useEffect } from "react";
+import {emptyField} from "../scripts/utilities";
 
 const Login = () => {
     // set focus when error occur
@@ -8,7 +10,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    const [sucess, setSuccess] = useState(false);
+    const [success, setSuccess] = useState(false);
 
     // set focus on email when loading
     useEffect(() => {
@@ -23,6 +25,10 @@ const Login = () => {
     const loginSubmit = async (e) => {
         e.preventDefault();
         // axios here
+        if(emptyField({email, password})) {
+            setErrorMessage('All Fields are required');
+            return;
+        }
         console.log(email, password);
 
         // clear form
@@ -31,10 +37,14 @@ const Login = () => {
         setSuccess(true);
     }
 
+    const checkUser = async () => {
+        
+    }
+
   return (
     <>
     {/* if we logged in successfully */}
-    {sucess ? (
+    {success ? (
         <section>
             <h1>You are being redirected</h1>
             <p>
@@ -52,7 +62,7 @@ const Login = () => {
                     ref={emailRef}
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
-                    required
+                    
                 />
 
                 <label htmlFor="password">Password:</label>
@@ -61,7 +71,7 @@ const Login = () => {
                     id="password"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
-                    required
+                    
                 />
 
                 <button>Login</button>
