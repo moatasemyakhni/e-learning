@@ -2,23 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller {
 
     public function __construct() {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
     public function register() {
+
         if(!$this->registerRequirements()) {
-            response()->json([
+            return response()->json([
                 "message" => 'Register failed',
                 "error" => true,
             ]);
         }
+        $user = User::create([
+            'name' => request()->get('name'),
+            'email' => request()->get('email'),
+            'password' => bcrypt(request()->get('password')),
+            'type' => request()->get('type'),
+        ]);
+
+        if ($token = JWTAuth::attempt(['email' => request()->get('email'), 'password' => request()->get('password')])) {
+            $get_token = $this->respondWithToken($token);
+        }
+
+        return response()->json([
+            'message' => 'User Created',
+            'user' => $user,
+            'token' => $get_token,
+            'error' => false,
+        ]);
 
     }
 
@@ -67,5 +86,9 @@ class AuthController extends Controller {
             'expires_in' => config('jwt.ttl'),
             'error' => false,
         ]);
+    }
+
+    public function guard() {
+        return Auth::guard();
     }
 }
