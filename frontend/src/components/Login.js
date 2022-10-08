@@ -81,7 +81,7 @@ const Login = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
                         className="input"
-                        
+                        required
                     />
                 </div>
 
@@ -93,7 +93,7 @@ const Login = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         value={password}
                         className="input"
-                        
+                        required 
                     />
                 </div>
 
