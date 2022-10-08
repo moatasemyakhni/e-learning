@@ -24,6 +24,14 @@ export const fullNameValidate = (name) => {
     return true;
 }
 
+export const emailValidation = (email) => {
+    const exp = /^(\w([\.-]?\w)*)+@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(!email.match(exp)) {
+        return false;
+    }
+    return true;
+}
+
 export const passwordValidate = (pwd) => {
     if(pwd.length < 6) {
         return false;
