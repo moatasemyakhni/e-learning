@@ -78,14 +78,30 @@ const signupForm = async (e) => {
             setSuccess(false);
             return;
         }
-        // now we can signup
-        try {
-
-        }catch(err) {
-            setErrorMessage('Server is not responding');
+    }catch(err) {
+        setErrorMessage('Server is not responding');
+        setSuccess(false);
+        return;
+    }
+    formData.append('name', fullName);
+    formData.append('password', password);
+    formData.append('type', type);
+    // now we can signup
+    try {
+        const register = await registerAccount(formData);
+        console.log(register);
+        if(register.error) {
+            setErrorMessage('Register Failed');
             setSuccess(false);
             return;
         }
+        const token = register.token.original.access_token;
+        localStorage.setItem('user_token', token);
+        setSuccess(true);
+        // clear form
+        setEmail('');
+        setPassword('');
+        return;
 
     }catch(err) {
         setErrorMessage('Server is not responding');
@@ -99,6 +115,13 @@ const checkEmailExistance = async (dataForm) => {
     const response = await axios.post(url, dataForm);
     const checkEmail = await response.data;
     return checkEmail;
+}
+
+const registerAccount = async (dataForm) => {
+    const url = baseUrl + "/auth/register";
+    const response = await axios.post(url, dataForm);
+    const result = response.data;
+    return result;
 }
 
   return (
