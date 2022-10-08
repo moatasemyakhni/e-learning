@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {useRef, useState, useEffect} from 'react';
 import {baseUrl, emptyField, fullNameValidate, passwordValidate, passwordMatchValidate, emailValidate} from '../scripts/utilities';
 
@@ -68,6 +69,36 @@ const signupForm = async (e) => {
         setSuccess(false);
         return;
     }
+    const formData = new FormData();
+    formData.append('email', email);
+    try {
+        const checkEmail = await checkEmailExistance(formData);
+        if(!checkEmail.available) {
+            setErrorMessage('Email is taken');
+            setSuccess(false);
+            return;
+        }
+        // now we can signup
+        try {
+
+        }catch(err) {
+            setErrorMessage('Server is not responding');
+            setSuccess(false);
+            return;
+        }
+
+    }catch(err) {
+        setErrorMessage('Server is not responding');
+        setSuccess(false);
+        return;
+    }
+}
+
+const checkEmailExistance = async (dataForm) => {
+    const url = baseUrl + "/check_email";
+    const response = await axios.post(url, dataForm);
+    const checkEmail = await response.data;
+    return checkEmail;
 }
 
   return (
@@ -84,6 +115,7 @@ const signupForm = async (e) => {
             <p ref={errorRef} className={errorMessage ? "error-msg": "view-hidden"} aria-live="assertive">{errorMessage}</p>
             <h1>Register</h1>
             <form onSubmit={signupForm}>
+                {/* name input */}
                 <label htmlFor='fullName'>
                     fullName:
                 </label>
