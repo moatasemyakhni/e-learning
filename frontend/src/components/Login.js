@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRef, useState, useEffect } from "react";
-import {emptyField} from "../scripts/utilities";
+import {baseUrl, emptyField} from "../scripts/utilities";
 
 const Login = () => {
     // set focus when error occur
@@ -27,18 +27,32 @@ const Login = () => {
         // axios here
         if(emptyField({email, password})) {
             setErrorMessage('All Fields are required');
+            setSuccess(false);
             return;
         }
-        console.log(email, password);
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('password', password);
+        
+        const user = await checkUser(formData);
+        if(!user.error) {
+            window.localStorage.setItem('user_token', user.access_token);
+            setSuccess(true);
+            // clear form
+            setEmail('');
+            setPassword('');
+            return;
+        }
 
-        // clear form
-        setEmail('');
-        setPassword('');
-        setSuccess(true);
+        setErrorMessage("Wrong Email or Password");
+        setSuccess(false);
     }
 
-    const checkUser = async () => {
-        
+    const checkUser = async (dataForm) => {
+        const url = baseUrl + "/auth/login";
+        const response = await axios.post(url, dataForm);
+        const data = await response.data;
+        return data;
     }
 
   return (
