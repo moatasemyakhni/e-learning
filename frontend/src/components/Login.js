@@ -97,7 +97,7 @@ const Login = () => {
                     />
                 </div>
 
-                <button>Login</button>
+                <button className="btn btn-form">Login</button>
             </form>
             <p>Need an Account?</p>
             {/* need a route */}

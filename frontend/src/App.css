@@ -6,6 +6,9 @@
 
 .App {
   text-align: center;
+  background-color: #1B4659;
+  color: white;
+  padding: 10px;
 }
 
 .form {
@@ -30,6 +33,7 @@
 
 .form > div label {
   text-align: right;
+  font-weight: 700;
 }
 
 
@@ -44,4 +48,31 @@
   width: 0%;
   overflow: hidden;
   transition: all 300ms;
+}
+
+.input {
+  height: 30px;
+  padding: 5px;
+}
+
+.btn {
+  height: 30px;
+  margin: 0 auto;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-form {
+  width: 80%;
+  background-color: white;
+  color: #1B4659;
+}
+
+.btn-form:hover {
+  background-color: #ECF0F5;
+}
+
+.btn-form:active {
+  color: white;
 }
