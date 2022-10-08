@@ -76,3 +76,16 @@
 .btn-form:active {
   color: white;
 }
+
+.form-link {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+a.form-link {
+  color: #ECF0F5
+} 
+
+a.form-link:hover {
+  color: white;
+}

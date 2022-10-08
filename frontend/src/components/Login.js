@@ -99,9 +99,9 @@ const Login = () => {
 
                 <button className="btn btn-form">Login</button>
             </form>
-            <p>Need an Account?</p>
+            <p className="form-link">Need an Account?</p>
             {/* need a route */}
-            <a href="/signup">Sign Up</a>
+            <a className="form-link" href="/signup">Sign Up</a>
         </div>
         )}
     </>
