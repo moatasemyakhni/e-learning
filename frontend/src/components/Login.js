@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useRef, useState, useEffect } from "react";
 import {baseUrl, emptyField} from "../scripts/utilities";
+import FormTitle from "./FormTitle";
 import WaitingSection from "./WaitingSection";
 
 const Login = () => {
@@ -68,26 +69,33 @@ const Login = () => {
         <WaitingSection />
     ) : ( 
         <div>
+            <FormTitle titleName="Sign in"/>
             <p ref={errorRef} className={errorMessage ? "error-msg": "view-hidden"} aria-live="assertive">{errorMessage}</p>
-            <form onSubmit={loginSubmit}>
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="text"
-                    id="email"
-                    ref={emailRef}
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                    
-                />
+            <form className="form" onSubmit={loginSubmit}>
+                <div>
+                    <label htmlFor="email">Email:</label>
+                    <input
+                        type="text"
+                        id="email"
+                        ref={emailRef}
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                        className="input"
+                        
+                    />
+                </div>
 
-                <label htmlFor="password">Password:</label>
-                <input
-                    type="password"
-                    id="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                    
-                />
+                <div>
+                    <label htmlFor="password">Password:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}
+                        className="input"
+                        
+                    />
+                </div>
 
                 <button>Login</button>
             </form>
