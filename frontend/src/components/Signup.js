@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {useRef, useState, useEffect} from 'react';
 import {baseUrl, emptyField, fullNameValidate, passwordValidate, passwordMatchValidate, emailValidate} from '../scripts/utilities';
+import WaitingSection from './WaitingSection';
 
 
 function Signup() {
@@ -127,12 +128,7 @@ const registerAccount = async (dataForm) => {
   return (
     <>
         {success ? (
-        <section>
-            <h1>You are being redirected</h1>
-            <p>
-                Waiting...
-            </p>
-        </section>
+        <WaitingSection />
     ) : ( 
         <div>
             <p ref={errorRef} className={errorMessage ? "error-msg": "view-hidden"} aria-live="assertive">{errorMessage}</p>

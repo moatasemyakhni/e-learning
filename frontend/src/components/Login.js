@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useRef, useState, useEffect } from "react";
 import {baseUrl, emptyField} from "../scripts/utilities";
+import WaitingSection from "./WaitingSection";
 
 const Login = () => {
     // set focus when error occur
@@ -64,12 +65,7 @@ const Login = () => {
     <>
     {/* if we logged in successfully */}
     {success ? (
-        <section>
-            <h1>You are being redirected</h1>
-            <p>
-                Waiting...
-            </p>
-        </section>
+        <WaitingSection />
     ) : ( 
         <div>
             <p ref={errorRef} className={errorMessage ? "error-msg": "view-hidden"} aria-live="assertive">{errorMessage}</p>
