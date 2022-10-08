@@ -12,6 +12,10 @@ class AuthController extends Controller {
         $this->middleware('auth:api', ['except' => ['login']]);
     }
 
+    public function register() {
+        
+    }
+
     public function login() {
         $credentials = request(['email', 'password']);
         if (! $token = JWTAuth::attempt($credentials)) {
