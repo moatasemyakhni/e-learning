@@ -24,7 +24,6 @@ const Login = () => {
 
     const loginSubmit = async (e) => {
         e.preventDefault();
-        // axios here
         if(emptyField({email, password})) {
             setErrorMessage('All Fields are required');
             setSuccess(false);
@@ -33,19 +32,25 @@ const Login = () => {
         const formData = new FormData();
         formData.append('email', email);
         formData.append('password', password);
-        
-        const user = await checkUser(formData);
-        if(!user.error) {
-            window.localStorage.setItem('user_token', user.access_token);
-            setSuccess(true);
-            // clear form
-            setEmail('');
-            setPassword('');
-            return;
-        }
 
-        setErrorMessage("Wrong Email or Password");
-        setSuccess(false);
+        try {
+            const user = await checkUser(formData);
+            if(!user.error) {
+                window.localStorage.setItem('user_token', user.access_token);
+                setSuccess(true);
+                // clear form
+                setEmail('');
+                setPassword('');
+                return;
+            }
+            
+            setErrorMessage("Wrong Email or Password");
+            setSuccess(false);
+        } catch(err) {
+            setErrorMessage("Server is not responding");
+            setSuccess(false);
+        }
+       
     }
 
     const checkUser = async (dataForm) => {
