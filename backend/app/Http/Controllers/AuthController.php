@@ -13,7 +13,27 @@ class AuthController extends Controller {
     }
 
     public function register() {
+        if(!$this->registerRequirements()) {
+            response()->json([
+                "message" => 'Register failed',
+                "error" => true,
+            ]);
         
+        
+        }
+    }
+
+    public function registerRequirements() {
+        $validator = validator()->make(request()->all(), [
+            'name' => "string|required",
+            "email" => "email|required",
+            "password" => "string|min:6|max:255",
+        ]);
+
+        if($validator->fails()) {
+            return false;
+        }
+        return true;
     }
 
     public function login() {
