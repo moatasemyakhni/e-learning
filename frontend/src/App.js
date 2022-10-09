@@ -3,6 +3,8 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Landing from './components/Landing';
 import Student from './components/Student';
+import StudentAssignment from './components/student/StudentAssignment';
+import StudentCourse from './components/student/StudentCourse';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
@@ -12,7 +14,13 @@ function App() {
           <Route path="/" element= {<Login />} />
           <Route path="/signup" element= {<Signup />} />
           <Route path="/landing" element= {<Landing />} />
-          <Route path="/student" element= {<Student />} />
+          <Route path="/student/*" element= {<Student />} />
+          
+        </Routes>
+
+        <Routes>
+          <Route path="/student/assignments" element= {<StudentAssignment />} />
+          <Route path="/student/courses" element= {<StudentCourse />} />
         </Routes>
       </div>
     </BrowserRouter>
