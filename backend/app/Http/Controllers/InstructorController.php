@@ -72,6 +72,7 @@ class InstructorController extends Controller {
             $currentAssignments[] = [
                 "title" => $assignment->title,
                 "description" => $assignment->description,
+                "_id" => $assignment->_id,
             ];
             // assign new array to the assignments
             $st->assignments = $currentAssignments;

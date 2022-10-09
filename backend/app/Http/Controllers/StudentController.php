@@ -23,4 +23,19 @@ class StudentController extends Controller {
         $student = auth()->user();
         return $student->announcements;
     }
+
+    function submitAssignment() {
+        // delete the assignment from student
+        $student = auth()->user();
+        if(sizeof($student->assignments) !== 0) {
+            foreach($student->assignments as $val) {
+                if($val->_id === request()->get('_id')) {
+                    unset($val);
+                    return response()->json(['error' => false]);
+                }
+            }
+        }
+        // no such assignment
+        return response()->json(['error' => true]);
+    }
 }
