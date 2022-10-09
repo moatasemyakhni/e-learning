@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRef, useState, useEffect } from "react";
-import {baseUrl, emptyField} from "../scripts/utilities";
+import {baseUrl, emptyField, userInfo} from "../scripts/utilities";
 import Button from "./Button";
 import FormTitle from "./FormTitle";
 import WaitingSection from "./WaitingSection";
@@ -44,10 +44,17 @@ const Login = () => {
             if(!user.error) {
                 window.localStorage.setItem('user_token', user.access_token);
                 setSuccess(true);
+                const get_info = await userInfo(baseUrl, user.access_token);
+                const get_type = get_info.type;
                 // clear form
                 setEmail('');
                 setPassword('');
-                navigate('/landing');
+                if(get_type === 'admin')
+                    navigate('/admin');
+                else if(get_type === 'student')
+                    navigate('/student');
+                else if(get_type === 'instructor')
+                    navigate('/instructor');
                 return;
             }
             

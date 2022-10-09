@@ -1,6 +1,9 @@
 import axios from "axios";
 
 export const baseUrl = "http://127.0.0.1:8000/api";
+export const configuration = (token) => {
+    return {headers: {'Authorization': `Bearer ${token}`}};
+}
 
 export const emptyField = (props) => {
     if(props.name === '' || props.email === '' || props.password === '' || props.passwordConfirm === '') {
@@ -48,9 +51,9 @@ export const passwordMatchValidate = (pwd, pwdRepeat) => {
     return true;
 }
 
-export const userInfo = async (u) => {
-    const url = u + "/me";
-    const response = await axios.get(url);
+export const userInfo = async (u, token) => {
+    const url = u + "/auth/user_info";
+    const response = await axios.get(url, configuration(token));
     const data = await response.data;
     return data;
 }
