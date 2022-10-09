@@ -138,7 +138,7 @@ const registerAccount = async (dataForm) => {
 }
 
   return (
-    <>
+    <div className="form-cover">
         {success ? (
         <WaitingSection />
     ) : ( 
@@ -222,7 +222,7 @@ const registerAccount = async (dataForm) => {
             <a className='form-link' href="/">Login</a>
         </div>
     )}
-    </>
+    </div>
   )
 }
 Signup.defaultProps = {

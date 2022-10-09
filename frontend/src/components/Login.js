@@ -70,7 +70,7 @@ const Login = () => {
     }
 
   return (
-    <>
+    <div className="form-cover">
     {/* if we logged in successfully */}
     {success ? (
         <WaitingSection />
@@ -111,7 +111,7 @@ const Login = () => {
             <a className="form-link" href="/signup">Sign Up</a>
         </div>
         )}
-    </>
+    </div>
   )
 }
 
