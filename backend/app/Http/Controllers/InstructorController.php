@@ -56,6 +56,20 @@ class InstructorController extends Controller {
         $announcement->description = request()->get('description');
         $announcement->save();
 
+        $students = User::all()->where('type', 'student');
+        foreach($students as $st) {
+            $currentAnnouncements = $st->announcements;
+            // add new course to them
+            $currentAnnouncements[] = [
+                "title" => $announcement->title,
+                "description" => $announcement->description,
+            ];
+            // assign new array to the announcements
+            $st->announcements = $currentAnnouncements;
+            // add assignment to each student
+            $st->update();
+        }
+
         return response()->json([
             'message' => "announcement created",
             'announcement' => $announcement,
