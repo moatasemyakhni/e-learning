@@ -19,7 +19,7 @@ class AdminController extends Controller {
                 "error" => true,
             ]);
         }
-        
+
         $course = new Course();
         $course->code = request()->get('code');
         $course->save();
@@ -37,6 +37,7 @@ class AdminController extends Controller {
         $courses = request()->get('courses');
 
         $instructor = User::find($instructor_id);
+        // course already assigned to instructor
         if(in_array($courses, $instructor->courses)) {
             return response()->json([
                 'error' => true,
