@@ -11,7 +11,8 @@ class Assignment extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
-        'code',
+        'title',
+        'description',
     ];
 
 }
