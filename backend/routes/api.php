@@ -30,6 +30,7 @@ Route::group([
     Route::post('assign_course', [AdminController::class, 'assignCourseToInstructor']);
     Route::post('register_course', [AdminController::class, 'registerCourse']);
     Route::post('create_assignment', [InstructorController::class, 'createAssignment']);
+    Route::post('create_announcement', [InstructorController::class, 'createAnnouncement']);
 });
 // public Routes
 Route::post('check_email', [UserController::class, 'checkEmail']);
