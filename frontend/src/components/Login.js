@@ -4,7 +4,7 @@ import {baseUrl, emptyField, userInfo} from "../scripts/utilities";
 import Button from "./Button";
 import FormTitle from "./FormTitle";
 import WaitingSection from "./WaitingSection";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
     // set focus when error occur
@@ -115,7 +115,7 @@ const Login = () => {
             </form>
             <p className="form-link">Need an Account?</p>
             {/* need a route */}
-            <a className="form-link" href="/signup">Sign Up</a>
+            <Link className="form-link" to="/signup">Sign Up</Link>
         </div>
         )}
     </div>

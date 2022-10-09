@@ -90,3 +90,33 @@ a.form-link {
 a.form-link:hover {
   color: white;
 }
+
+/* navbar */
+.nav {
+  background-color: #1B4659;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  padding: 0 15px;
+}
+
+.nav .title {
+  font-size: 28px;
+}
+
+.nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  padding: 5px;
+}
+
+.nav a {
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+}

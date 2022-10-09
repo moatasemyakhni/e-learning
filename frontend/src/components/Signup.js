@@ -4,7 +4,7 @@ import {baseUrl, emptyField, fullNameValidate, passwordValidate, passwordMatchVa
 import WaitingSection from './WaitingSection';
 import FormTitle from "./FormTitle";
 import Button from './Button';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 function Signup() {
@@ -223,7 +223,7 @@ const registerAccount = async (dataForm) => {
             </form>
             <p className='form-link'>Already have an account?</p>
             {/* need a route */}
-            <a className='form-link' href="/">Login</a>
+            <Link className='form-link' to="/">Login</Link>
         </div>
     )}
     </div>
