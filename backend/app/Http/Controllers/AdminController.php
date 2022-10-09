@@ -11,9 +11,49 @@ class AdminController extends Controller {
     public function __construct() {
         $this->middleware('auth:api');
     }
+    
+    public function register() {
+
+        if(!$this->registerRequirements()) {
+            return response()->json([
+                "message" => 'Register failed',
+                "error" => true,
+            ]);
+        }
+        $user = User::create([
+            'name' => request()->get('name'),
+            'email' => request()->get('email'),
+            'password' => bcrypt(request()->get('password')),
+            'type' => request()->get('type'),
+        ]);
+
+        return response()->json([
+            'message' => 'User Created',
+            'user' => $user,
+            'error' => false,
+        ]);
+
+    }
+
+    public function registerRequirements() {
+            $validator = validator()->make(request()->all(), [
+                'name' => "string|required",
+                "email" => "email|required",
+                "password" => "string|min:6|max:255",
+                'type' => "required",
+            ]);
+            $type = request()->get('type');
+            if($type != 'instructor' && $type != 'student') {
+                return false;
+            }
+            if($validator->fails()) {
+                return false;
+            }
+            return true;
+    }
 
     public function registerCourse() {
-        if(!$this->registerRequirements()) {
+        if(!$this->registerCourseRequirements()) {
             return response()->json([
                 "message" => 'Register course failed',
                 "error" => true,
@@ -56,7 +96,7 @@ class AdminController extends Controller {
         ]);
     }
 
-    function registerRequirements() {
+    function registerCourseRequirements() {
         $validator = validator()->make(request()->all(), [
             'code' => 'required',
         ]);
