@@ -11,7 +11,10 @@ class Instructor {
         if($user->type === "instructor") {
             return $next($request);
         }
-
-        dd("Only Instructors are allowed");
+        return response()->json([
+            'error' => true,
+            'message' => 'Only Instructors Are Allowed',
+        ]);
+        //dd("Only Instructors are allowed");
     }
 }

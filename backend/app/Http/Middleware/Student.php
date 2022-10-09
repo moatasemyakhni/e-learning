@@ -12,7 +12,10 @@ class Student {
         if($user->type === "student") {
             return $next($request);
         }
-
-        dd("Only Students allowed");
+        return response()->json([
+            'error' => true,
+            'message' => 'Only students Are Allowed',
+        ]);
+        //dd("Only Students allowed");
     }
 }

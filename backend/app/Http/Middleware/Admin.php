@@ -12,6 +12,10 @@ class Admin {
             return $next($request);
         }
 
-        dd("Only Admins are allowed");
+        return response()->json([
+            'error' => true,
+            'message' => 'Only Admins Are Allowed',
+        ]);
+        //dd("Only Admins are allowed");
     }
 }

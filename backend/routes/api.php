@@ -30,11 +30,13 @@ Route::group([
     Route::get('user_info', [AuthController::class, 'user']);
 
     Route::group(['middleware' => 'admin'], function() {
+        Route::post('register_people', [AdminController::class, 'register']);
         Route::post('assign_course', [AdminController::class, 'assignCourseToInstructor']);
         Route::post('register_course', [AdminController::class, 'registerCourse']);
     });
 
     Route::group(['middleware' => 'instructor'], function() {
+        Route::post('register_student', [InstructorController::class, 'register']);
         Route::post('create_assignment', [InstructorController::class, 'createAssignment']);
         Route::post('create_announcement', [InstructorController::class, 'createAnnouncement']);
     });
