@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Announcement;
 use App\Models\Assignment;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class InstructorController extends Controller {
@@ -23,6 +24,19 @@ class InstructorController extends Controller {
         $assignment->description = request()->get('description');
         $assignment->save();
 
+        $students = User::all()->where('type', 'student');
+        foreach($students as $st) {
+            $currentAssignments = $st->assignments;
+            // add new course to them
+            $currentAssignments[] = [
+                "title" => $assignment->title,
+                "description" => $assignment->description,
+            ];
+            // assign new array to the assignments
+            $st->assignments = $currentAssignments;
+            // add assignment to each student
+            $st->update();
+        }
         return response()->json([
             'message' => "assignment created",
             'assignment' => $assignment,
