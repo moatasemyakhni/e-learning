@@ -4,6 +4,7 @@ import {baseUrl, emptyField, fullNameValidate, passwordValidate, passwordMatchVa
 import WaitingSection from './WaitingSection';
 import FormTitle from "./FormTitle";
 import Button from './Button';
+import { useNavigate } from "react-router-dom";
 
 
 function Signup() {
@@ -11,6 +12,7 @@ function Signup() {
     const fullNameRef = useRef();
     const errorRef = useRef();
     const buttonRef = useRef();
+    const navigate = useNavigate();
     
     const [fullName, setFullName] = useState('');
 
@@ -109,6 +111,7 @@ const signupForm = async (e) => {
         // clear form
         setEmail('');
         setPassword('');
+                navigate('/landing');
         return;
 
     }catch(err) {

@@ -4,12 +4,14 @@ import {baseUrl, emptyField} from "../scripts/utilities";
 import Button from "./Button";
 import FormTitle from "./FormTitle";
 import WaitingSection from "./WaitingSection";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     // set focus when error occur
     const emailRef = useRef();
     const errorRef = useRef();
     const buttonRef = useRef();
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -45,6 +47,7 @@ const Login = () => {
                 // clear form
                 setEmail('');
                 setPassword('');
+                navigate('/landing');
                 return;
             }
             
