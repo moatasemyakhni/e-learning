@@ -10,7 +10,7 @@ class StudentController extends Controller {
     }
 
     function displayCourses() {
-        $student_id = auth()->user();
-        return $student_id;
+        $student = auth()->user();
+        return $student->courses;
     }
 }
