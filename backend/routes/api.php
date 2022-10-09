@@ -27,6 +27,7 @@ Route::group([
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::get('user_info', [AuthController::class, 'user']);
     Route::post('assign_course', [AdminController::class, 'assignCourseToInstructor']);
+    Route::post('register_course', [AdminController::class, 'registerCourse']);
 });
 // public Routes
 Route::post('check_email', [UserController::class, 'checkEmail']);

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Course;
 use Illuminate\Http\Request;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AdminController extends Controller {
 
@@ -14,20 +13,23 @@ class AdminController extends Controller {
     }
 
     public function registerCourse() {
-
         if(!$this->registerRequirements()) {
             return response()->json([
                 "message" => 'Register course failed',
                 "error" => true,
             ]);
         }
+        $course = new Course();
+        $course->code = request()->get('code');
+        $course->save();
+        return $course;
         $course = Course::create([
-            'course' => request()->get('course'),
+            'code' => request()->get('code'),
         ]);
 
         return response()->json([
             'message' => 'Course Created',
-            'user' => $course,
+            'course' => $course,
             'error' => false,
         ]);
 
