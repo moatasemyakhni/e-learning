@@ -19,13 +19,10 @@ class AdminController extends Controller {
                 "error" => true,
             ]);
         }
+        
         $course = new Course();
         $course->code = request()->get('code');
         $course->save();
-        return $course;
-        $course = Course::create([
-            'code' => request()->get('code'),
-        ]);
 
         return response()->json([
             'message' => 'Course Created',
