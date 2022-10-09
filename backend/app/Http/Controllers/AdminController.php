@@ -13,7 +13,6 @@ class AdminController extends Controller {
     }
     
     public function register() {
-        return "HRLLOO";
         if(!$this->registerRequirements()) {
             return response()->json([
                 "message" => 'Register failed',
