@@ -12,6 +12,47 @@ class InstructorController extends Controller {
         $this->middleware('auth:api');
     }
 
+    // register students only
+    public function register() {
+
+        if(!$this->registerRequirements()) {
+            return response()->json([
+                "message" => 'Register failed',
+                "error" => true,
+            ]);
+        }
+        $user = User::create([
+            'name' => request()->get('name'),
+            'email' => request()->get('email'),
+            'password' => bcrypt(request()->get('password')),
+            'type' => request()->get('type'),
+        ]);
+
+        return response()->json([
+            'message' => 'User Created',
+            'user' => $user,
+            'error' => false,
+        ]);
+
+    }
+
+    public function registerRequirements() {
+            $validator = validator()->make(request()->all(), [
+                'name' => "string|required",
+                "email" => "email|required",
+                "password" => "string|min:6|max:255",
+                'type' => "required",
+            ]);
+            $type = request()->get('type');
+            if($type != 'student') {
+                return false;
+            }
+            if($validator->fails()) {
+                return false;
+            }
+            return true;
+    }
+
     public function createAssignment() {
         if(! $this->createRequirements()) {
             return response()->json([
