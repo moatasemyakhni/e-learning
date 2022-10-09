@@ -46,6 +46,7 @@ Route::group([
         Route::get('courses', [StudentController::class, 'displayCourses']);
         Route::get('assignments', [StudentController::class, 'displayAssignments']);
         Route::get('announcements', [StudentController::class, 'displayAnnouncements']);
+        Route::post('submit_assignment', [StudentController::class, 'submitAssignment']);
     });
 });
 // public Routes

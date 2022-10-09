@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller {
     public function __construct() {
@@ -27,14 +28,24 @@ class StudentController extends Controller {
     function submitAssignment() {
         // delete the assignment from student
         $student = auth()->user();
-        if(sizeof($student->assignments) !== 0) {
-            foreach($student->assignments as $val) {
-                if($val->_id === request()->get('_id')) {
-                    unset($val);
-                    return response()->json(['error' => false]);
+        $assignments = $student->assignments;
+       
+        //return $student;
+        if(sizeof($assignments) !== 0) {
+            foreach($student->assignments as $key => $val) {
+                if(sizeof($val) > 2) {
+                    if($val['_id'] === request()->get('_id')) {
+                        DB::collection('users')
+                        ->where('_id', auth()->id())
+                        ->pull('assignments', $val);
+                        //return $assignments;
+                        return response()->json(['error' => false]);
+                    }
                 }
             }
+            
         }
+        
         // no such assignment
         return response()->json(['error' => true]);
     }
