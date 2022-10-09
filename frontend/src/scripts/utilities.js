@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const baseUrl = "http://127.0.0.1:8000/api";
 
 export const emptyField = (props) => {
@@ -44,4 +46,11 @@ export const passwordMatchValidate = (pwd, pwdRepeat) => {
         return false;
     }
     return true;
+}
+
+export const userInfo = async (u) => {
+    const url = u + "/me";
+    const response = await axios.get(url);
+    const data = await response.data;
+    return data;
 }
