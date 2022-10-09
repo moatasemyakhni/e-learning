@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Announcement;
 use App\Models\Assignment;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,25 @@ class InstructorController extends Controller {
         return response()->json([
             'message' => "assignment created",
             'assignment' => $assignment,
+            'error' => false,
+        ]);
+    }
+
+    public function createAnnouncement() {
+        if(! $this->createRequirements()) {
+            return response()->json([
+                'error' => true,
+            ]);
+        }
+
+        $announcement = new Announcement();
+        $announcement->title = request()->get('title');
+        $announcement->description = request()->get('description');
+        $announcement->save();
+
+        return response()->json([
+            'message' => "announcement created",
+            'announcement' => $announcement,
             'error' => false,
         ]);
     }
