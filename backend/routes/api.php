@@ -28,13 +28,23 @@ Route::group([
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::get('user_info', [AuthController::class, 'user']);
-    Route::post('assign_course', [AdminController::class, 'assignCourseToInstructor']);
-    Route::post('register_course', [AdminController::class, 'registerCourse']);
-    Route::post('create_assignment', [InstructorController::class, 'createAssignment']);
-    Route::post('create_announcement', [InstructorController::class, 'createAnnouncement']);
-    Route::get('courses', [StudentController::class, 'displayCourses']);
-    Route::get('assignments', [StudentController::class, 'displayAssignments']);
-    Route::get('announcements', [StudentController::class, 'displayAnnouncements']);
+
+    Route::group(['middleware' => 'admin'], function() {
+        Route::post('assign_course', [AdminController::class, 'assignCourseToInstructor']);
+        Route::post('register_course', [AdminController::class, 'registerCourse']);
+    });
+
+    Route::group(['middleware' => 'instructor'], function() {
+        Route::post('create_assignment', [InstructorController::class, 'createAssignment']);
+        Route::post('create_announcement', [InstructorController::class, 'createAnnouncement']);
+    });
+
+    // information of student himself
+    Route::group(['middleware' => 'student'], function() {
+        Route::get('courses', [StudentController::class, 'displayCourses']);
+        Route::get('assignments', [StudentController::class, 'displayAssignments']);
+        Route::get('announcements', [StudentController::class, 'displayAnnouncements']);
+    });
 });
 // public Routes
 Route::post('check_email', [UserController::class, 'checkEmail']);
