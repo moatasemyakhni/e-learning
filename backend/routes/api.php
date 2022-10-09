@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,7 @@ Route::group([
     Route::get('user_info', [AuthController::class, 'user']);
     Route::post('assign_course', [AdminController::class, 'assignCourseToInstructor']);
     Route::post('register_course', [AdminController::class, 'registerCourse']);
+    Route::post('create_assignment', [InstructorController::class, 'createAssignment']);
 });
 // public Routes
 Route::post('check_email', [UserController::class, 'checkEmail']);
