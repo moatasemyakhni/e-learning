@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group([
-
-    'middleware' => 'api',
     'prefix' => 'auth'
 
 ], function () {
@@ -27,7 +25,7 @@ Route::group([
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::get('user_info', [AuthController::class, 'user']);
+    Route::post('assign_course', [UserController::class, 'assignCourseToInstructor']);
 });
-
 // public Routes
 Route::post('check_email', [UserController::class, 'checkEmail']);
