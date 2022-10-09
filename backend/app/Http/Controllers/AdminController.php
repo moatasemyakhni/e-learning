@@ -42,7 +42,7 @@ class AdminController extends Controller {
             return response()->json([
                 'error' => true,
             ]);
-        }
+        }  
         // store current courses of teacher in variable
         $currentCourses = $instructor->courses;
         // add new course to them
