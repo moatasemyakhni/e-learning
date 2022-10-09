@@ -34,6 +34,7 @@ Route::group([
     Route::post('create_announcement', [InstructorController::class, 'createAnnouncement']);
     Route::get('courses', [StudentController::class, 'displayCourses']);
     Route::get('assignments', [StudentController::class, 'displayAssignments']);
+    Route::get('announcements', [StudentController::class, 'displayAnnouncements']);
 });
 // public Routes
 Route::post('check_email', [UserController::class, 'checkEmail']);

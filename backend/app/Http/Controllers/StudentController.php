@@ -18,4 +18,9 @@ class StudentController extends Controller {
         $student = auth()->user();
         return $student->assignments;
     }
+
+    function displayAnnouncements() {
+        $student = auth()->user();
+        return $student->announcements;
+    }
 }
