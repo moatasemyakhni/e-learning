@@ -99,7 +99,6 @@ const signupForm = async (e) => {
     // now we can signup
     try {
         const register = await registerAccount(formData);
-        console.log(register);
         if(register.error) {
             setErrorMessage('Register Failed');
             setSuccess(false);
@@ -111,7 +110,12 @@ const signupForm = async (e) => {
         // clear form
         setEmail('');
         setPassword('');
-                navigate('/landing');
+        if(type === 'admin')
+            navigate('/admin');
+        else if(type === 'student')
+            navigate('/student');
+        else if(type === 'instructor')
+            navigate('/instructor');
         return;
 
     }catch(err) {
