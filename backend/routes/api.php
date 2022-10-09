@@ -33,6 +33,7 @@ Route::group([
     Route::post('create_assignment', [InstructorController::class, 'createAssignment']);
     Route::post('create_announcement', [InstructorController::class, 'createAnnouncement']);
     Route::get('courses', [StudentController::class, 'displayCourses']);
+    Route::get('assignments', [StudentController::class, 'displayAssignments']);
 });
 // public Routes
 Route::post('check_email', [UserController::class, 'checkEmail']);
