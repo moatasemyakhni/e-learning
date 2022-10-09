@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ Route::group([
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::get('user_info', [AuthController::class, 'user']);
-    Route::post('assign_course', [UserController::class, 'assignCourseToInstructor']);
+    Route::post('assign_course', [AdminController::class, 'assignCourseToInstructor']);
 });
 // public Routes
 Route::post('check_email', [UserController::class, 'checkEmail']);
