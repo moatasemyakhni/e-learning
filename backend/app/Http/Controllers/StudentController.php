@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -76,6 +77,18 @@ class StudentController extends Controller {
         return response()->json([
             "error" => false,
         ]);
+    }
+
+    function displayNonRegisteredCourses() {
+        $student_id = auth()->id();
+
+        $student = User::find($student_id);
+        if(is_null($student->courses)) {
+            return Course::all('code');
+        }
+        
+        return Course::whereNotIn('code', $student->courses)
+                       ->get();
     }
 
     function registerCourseRequirements() {
