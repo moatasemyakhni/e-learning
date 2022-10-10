@@ -7,6 +7,7 @@ import StudentAssignment from './components/student/StudentAssignment';
 import StudentCourse from './components/student/StudentCourse';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StudentAnnouncements from './components/student/StudentAnnouncements';
+import Instructor from './components/Instructor';
 function App() {
   return (
       <div className="App">
@@ -15,6 +16,7 @@ function App() {
           <Route path="/signup" element= {<Signup />} />
           <Route path="/landing" element= {<Landing />} />
           <Route path="/student/*" element= {<Student />} />
+          <Route path="/instructor/*" element= {<Instructor />} />
           
         </Routes>
         
