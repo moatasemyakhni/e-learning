@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 const StudentCourse = () => {
 
 
-    const [name, setName] = useState('');
-    const [id, set_id] = useState(null);
     const [empty, setEmpty] = useState(true);
     const [courses, setCourses] = useState('');
 
@@ -26,13 +24,6 @@ const StudentCourse = () => {
     x();
   }, [])
 
-  const displayCourses = () => {
-    console.log(courses)
-    courses.forEach(course => {
-      console.log(course);
-      return <h3>{course}</h3>
-    });
-  }
   return (
     <>
     
