@@ -21,11 +21,9 @@ const Student = () => {
 
         const getCourses = await getApi(url, localStorage.getItem('user_token'));
         setCourses(getCourses);
-        console.log("tget,", courses);
       }catch(err) {
         setEmpty(true);
         setErrorMessage('Server is not responding'); 
-        console.log( "err")
 
       }
 
@@ -43,13 +41,11 @@ const Student = () => {
       }else {
         val = e.target.value;
       }
-      console.log(e);
       const url = baseUrl + "/auth/student_register_course";
       try {
         const dataForm = new FormData();
         dataForm.append('courses', val)
         const post = await postApi(url, dataForm, localStorage.getItem('user_token'));
-        console.log(post);
       } catch(err) {
         setEmpty(true);
         setErrorMessage('Server is not responding');
