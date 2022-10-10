@@ -57,3 +57,16 @@ export const userInfo = async (u, token) => {
     const data = await response.data;
     return data;
 }
+
+export const postApi = async (url, token, dataForm) => {
+
+    const response = await axios.post(url, configuration(token), dataForm);
+    const data = await response.data;
+    return data;
+}
+
+export const getApi = async (url, token) => {
+    const response = await axios.get(url, configuration(token));
+    const data = await response.data;
+    return data;
+}
