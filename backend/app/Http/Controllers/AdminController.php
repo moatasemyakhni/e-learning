@@ -77,6 +77,9 @@ class AdminController extends Controller {
 
         $instructor = User::find($instructor_id);
         // course already assigned to instructor
+        if(is_null($instructor->courses)) {
+            $instructor->courses = [];
+        }
         if(in_array($courses, $instructor->courses)) {
             return response()->json([
                 'error' => true,

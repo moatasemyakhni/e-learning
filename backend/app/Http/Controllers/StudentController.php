@@ -52,10 +52,13 @@ class StudentController extends Controller {
     }
 
     function assignCourse() {
-        $student_id = request()->get('_id');
+        $student_id = auth()->id();
         $courses = request()->get('courses');
 
         $student = User::find($student_id);
+        if(is_null($student->courses)) {
+            $student->courses = [];
+        }
         // course already assigned to student
         if(in_array($courses, $student->courses)) {
             return response()->json([
