@@ -58,9 +58,9 @@ export const userInfo = async (u, token) => {
     return data;
 }
 
-export const postApi = async (url, token, dataForm) => {
+export const postApi = async (url, dataForm, token) => {
 
-    const response = await axios.post(url, configuration(token), dataForm);
+    const response = await axios.post(url,  dataForm, configuration(token));
     const data = await response.data;
     return data;
 }

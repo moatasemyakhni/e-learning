@@ -133,3 +133,7 @@ a.form-link:hover {
 .active {
   background-color: #00ffff91;
 }
+
+.view-none {
+  display: none;
+}

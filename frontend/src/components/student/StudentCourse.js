@@ -12,6 +12,7 @@ const StudentCourse = () => {
       const url = baseUrl + "/auth/courses";
       try {
         const data = await getApi(url, localStorage.getItem('user_token'));
+        setErrorMessage('');
         if(data.length === 0) {
             setEmpty(true);
   
@@ -42,7 +43,7 @@ const StudentCourse = () => {
             <p>{errorMessage}</p>
            </>
         ): (
-          courses.map((course, index) => {
+          courses.map((course) => {
             return <h3>{course}</h3>
           })
           )}
