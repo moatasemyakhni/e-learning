@@ -8,7 +8,6 @@ import StudentCourse from './components/student/StudentCourse';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
-    <BrowserRouter>
       <div className="App">
         <Routes>
           <Route path="/" element= {<Login />} />
@@ -17,13 +16,12 @@ function App() {
           <Route path="/student/*" element= {<Student />} />
           
         </Routes>
-
+        
         <Routes>
           <Route path="/student/assignments" element= {<StudentAssignment />} />
           <Route path="/student/courses" element= {<StudentCourse />} />
         </Routes>
       </div>
-    </BrowserRouter>
   );
 }
 
