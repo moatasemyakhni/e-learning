@@ -8,7 +8,9 @@ const Navbar = ({name}) => {
             <ul>
                 <li><NavLink className={(navData) => navData.isActive ? "active" : "" } to="/student/assignments">Assignments</NavLink></li>
                 <li><NavLink className={(navData) => navData.isActive ? "active" : "" } to="/student/courses">Courses</NavLink></li>
+                <li><NavLink className={(navData) => navData.isActive ? "active" : "" } to="/student/announcements">Announcements</NavLink></li>
                 <li><NavLink className={(navData) => navData.isActive ? "active" : "" } to="/">Logout</NavLink></li>
+
             </ul>
         </nav>
         </>

@@ -1,23 +1,24 @@
 import { baseUrl, getApi} from "../../scripts/utilities"
 import { useEffect, useState } from "react";
 
-const StudentCourse = () => {
+const StudentAnnouncements = () => {
 
 
     const [empty, setEmpty] = useState(true);
-    const [courses, setCourses] = useState('');
+    const [announcement, setAnnouncement] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    const getCourses = async () => {
-      const url = baseUrl + "/auth/courses";
+    const getAnnouncement = async () => {
+      const url = baseUrl + "/auth/announcements";
       try {
         const data = await getApi(url, localStorage.getItem('user_token'));
+        setErrorMessage('');
         if(data.length === 0) {
             setEmpty(true);
   
         }else {
             setEmpty(false);
-            setCourses(data);
+            setAnnouncement(data);
             
         }
       } catch(err) {
@@ -27,27 +28,27 @@ const StudentCourse = () => {
       
     }
   useEffect(() => {
-    const x = async () => await getCourses();
+    const x = async () => await getAnnouncement();
     x();
   }, [])
 
   return (
     <>
     
-    <h3>Courses</h3>
+    <h3>Announcements</h3>
         {empty? (
           <>
-            <p>No enrolled Courses</p>
+            <p>No Announcements</p>
             {/* in case there is error */}
             <p>{errorMessage}</p>
            </>
         ): (
-          courses.map((course, index) => {
-            return <h3>{course}</h3>
+            announcement.map((announce) => {
+            return <h3>{announce}</h3>
           })
           )}
     </>
   )
 }
 
-export default StudentCourse
+export default StudentAnnouncements
