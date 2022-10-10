@@ -31,19 +31,17 @@ class StudentController extends Controller {
         // delete the assignment from student
         $student = auth()->user();
         $assignments = $student->assignments;
-       
-        //return $student;
+    //    return $assignments;
+        // delete assignment from student
         if(sizeof($assignments) !== 0) {
             foreach($student->assignments as $key => $val) {
-                if(sizeof($val) > 2) {
-                    if($val['_id'] === request()->get('_id')) {
-                        DB::collection('users')
-                        ->where('_id', auth()->id())
-                        ->pull('assignments', $val);
-                        //return $assignments;
-                        return response()->json(['error' => false]);
-                    }
+                if($val['_id'] === request()->get('_id')) {
+                    DB::collection('users')
+                    ->where('_id', auth()->id())
+                    ->pull('assignments', $val);
+                    return response()->json(['error' => false]);
                 }
+
             }
             
         }
