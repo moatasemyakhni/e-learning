@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -48,5 +49,39 @@ class StudentController extends Controller {
         
         // no such assignment
         return response()->json(['error' => true]);
+    }
+
+    function assignCourse() {
+        $student_id = request()->get('_id');
+        $courses = request()->get('courses');
+
+        $student = User::find($student_id);
+        // course already assigned to student
+        if(in_array($courses, $student->courses)) {
+            return response()->json([
+                'error' => true,
+            ]);
+        }  
+        // store current courses of student in variable
+        $currentCourses = $student->courses;
+        // add new course to them
+        $currentCourses[] = $courses;
+        // assign new array to the courses
+        $student->courses = $currentCourses;
+        $student->update();
+
+        return response()->json([
+            "error" => false,
+        ]);
+    }
+
+    function registerCourseRequirements() {
+        $validator = validator()->make(request()->all(), [
+            'code' => 'required',
+        ]);
+        if($validator->fails()) {
+            return false;
+        }
+        return true;
     }
 }
