@@ -5,7 +5,7 @@ const StudentAnnouncements = () => {
 
 
     const [empty, setEmpty] = useState(true);
-    const [announcement, setAnnouncement] = useState('');
+    const [announcement, setAnnouncement] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
 
     const getAnnouncement = async () => {
@@ -44,9 +44,14 @@ const StudentAnnouncements = () => {
            </>
         ): (
             announcement.map((announce) => {
-            return <h3>{announce}</h3>
+            return (
+              <div>
+              <h3>{announce.title}</h3>
+              <h4>{announce.description}</h4>
+            </div>
+            )
           })
-          )}
+        )}
     </>
   )
 }
