@@ -12,7 +12,9 @@ const Admin = () => {
     const [course, setCourse] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [success, setSuccess] = useState(false);
+    
     const btnRef = useRef();
+
     const getInstructors = async () => {
         try {
             const url = baseUrl + "/auth/get_instructors";
@@ -61,6 +63,7 @@ const Admin = () => {
         const data = await userInfo(baseUrl, localStorage.getItem('user_token'))
         setName(data.name);
     }
+
 useEffect(() => {
         info();
         getInstructors();
@@ -68,28 +71,30 @@ useEffect(() => {
         setInstructor(instructors[0]._id);
         setCourse(courses[0].code);
     }, []);
+
   return (
     <div>
         <Navbar name={name} />
         <form onSubmit={assignCourseToInstructor}>
-        <select 
-        className="input"
-         onChange={(e) => setInstructor(e.target.value)}>
-            {
-                instructors.map(instructor => <option value={instructor._id}>{instructor.name}</option>)
-            }
-        </select>
-        <select 
-        className="input"
-         onChange={(e) => setCourse(e.target.value)}>
-            {
-                courses.map(course => <option value={course.code}>{course.code}</option>)
-            }
-        </select>   
-        <Button btnRef={btnRef} text={'Confirm'} />
-        </form>
-        
-        
+            <select 
+                className="input"
+                onChange={(e) => setInstructor(e.target.value)}
+                >
+                {
+                    instructors.map(instructor => <option value={instructor._id}>{instructor.name}</option>)
+                }
+            </select>
+
+            <select 
+                className="input"
+                onChange={(e) => setCourse(e.target.value)}
+                >
+                {
+                    courses.map(course => <option value={course.code}>{course.code}</option>)
+                }
+            </select>   
+            <Button btnRef={btnRef} text={'Confirm'} />
+        </form> 
     </div>
   )
 }

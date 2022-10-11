@@ -1,9 +1,8 @@
 import { baseUrl, getApi} from "../../scripts/utilities"
 import { useEffect, useState } from "react";
 
+
 const StudentAnnouncements = () => {
-
-
     const [empty, setEmpty] = useState(true);
     const [announcement, setAnnouncement] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
@@ -15,11 +14,9 @@ const StudentAnnouncements = () => {
         setErrorMessage('');
         if(data.length === 0) {
             setEmpty(true);
-  
         }else {
             setEmpty(false);
             setAnnouncement(data);
-            
         }
       } catch(err) {
         setErrorMessage('Server is not responding');
@@ -27,6 +24,7 @@ const StudentAnnouncements = () => {
       }
       
     }
+
   useEffect(() => {
     const x = async () => await getAnnouncement();
     x();

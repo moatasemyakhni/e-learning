@@ -1,9 +1,8 @@
 import { baseUrl, getApi, postApi} from "../../scripts/utilities"
 import { useEffect, useState } from "react";
 
+
 const StudentAssignment = () => {
-
-
     const [empty, setEmpty] = useState(true);
     const [assignment, setAssignments] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -27,11 +26,6 @@ const StudentAssignment = () => {
       }
       
     }
-  useEffect(() => {
-    const x = async () => await getAssignments();
-    x();
-  }, [])
-
 
   const submitAssignment = async (e, id) => {
     const url = baseUrl + "/auth/submit_assignment";
@@ -47,6 +41,11 @@ const StudentAssignment = () => {
       setErrorMessage('Server is not responding');
     }
   }
+
+  useEffect(() => {
+    const x = async () => await getAssignments();
+    x();
+  }, []);
 
   return (
     <>
