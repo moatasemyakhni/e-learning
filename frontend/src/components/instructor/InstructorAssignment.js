@@ -1,6 +1,3 @@
-import axios from 'axios';
-import {useRef, useState, useEffect} from 'react';
-import WaitingSection from '../WaitingSection';
 import CommandForm from '../CommandForm';
 
 

@@ -1,10 +1,10 @@
-import Navbar from "./instructor/Navbar";
+import Navbar from "./admin/Navbar";
 import { baseUrl, userInfo, postApi, getApi} from "../scripts/utilities";
 import { useEffect, useState } from "react";
 import Signup from "./Signup";
 
 
-const Instructor = () => {
+const Admin = () => {
     const [name, setName] = useState('');
 const info = async () => {
         const data = await userInfo(baseUrl, localStorage.getItem('user_token'))
@@ -16,10 +16,8 @@ useEffect(() => {
   return (
     <div>
         <Navbar name={name} />
-
-        <Signup user_types={['student']} api={'register_student'} />
     </div>
   )
 }
 
-export default Instructor
+export default Admin

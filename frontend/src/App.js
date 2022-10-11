@@ -10,6 +10,9 @@ import StudentAnnouncements from './components/student/StudentAnnouncements';
 import Instructor from './components/Instructor';
 import InstructorAssignment from './components/instructor/InstructorAssignment';
 import InstructorAnnouncements from './components/instructor/InstructorAnnouncements';
+import Admin from './components/Admin';
+import AdminAddPeople from './components/admin/AdminAddPeople';
+import AdminAddCourse from './components/admin/AdminAddCourse';
 function App() {
   return (
       <div className="App">
@@ -19,6 +22,7 @@ function App() {
           <Route path="/landing" element= {<Landing />} />
           <Route path="/student/*" element= {<Student />} />
           <Route path="/instructor/*" element= {<Instructor />} />
+          <Route path="/admin/*" element= {<Admin />} />
           
         </Routes>
         
@@ -31,6 +35,11 @@ function App() {
         <Routes>
           <Route path="/instructor/assignments" element= {<InstructorAssignment />} />
           <Route path="/instructor/announcements" element= {<InstructorAnnouncements />} />
+        </Routes>
+
+        <Routes>
+          <Route path="/admin/people" element= {<AdminAddPeople />} />
+          <Route path="/admin/course" element= {<AdminAddCourse />} />
         </Routes>
       </div>
   );
