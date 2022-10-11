@@ -7,23 +7,19 @@ import Button from './Button';
 import { Link, useNavigate } from "react-router-dom";
 
 
-function Signup({user_types, api}) {
+const Signup = ({user_types, api}) => {
     // set focus on load
     const fullNameRef = useRef();
     const errorRef = useRef();
     const buttonRef = useRef();
+
     const navigate = useNavigate();
     
     const [fullName, setFullName] = useState('');
-
     const [email, setEmail] = useState('');
-
     const [type, setType] = useState(user_types[0]);
-
     const [password, setPassword] = useState('');
-
     const [passwordConfirm, setPasswordConfirm] = useState('');
-
     // message is not viewed by default
     const [errorMessage, setErrorMessage] = useState('');
     const [success, setSuccess] = useState(false);
@@ -43,7 +39,7 @@ const signupForm = async (e) => {
     }
     if(emptyField(allInputvalue)) {
         setErrorMessage('All Fields are required');
-        setSuccess(false)
+        setSuccess(false);
         return;
     }
     if(!fullNameValidate(fullName)) {
@@ -145,7 +141,7 @@ const registerAccount = async (dataForm) => {
     <div className="form-cover">
         {success ? (
         <WaitingSection />
-    ) : ( 
+        ) : ( 
         <div>
             <FormTitle titleName="Register"/>
             <p ref={errorRef} className={errorMessage ? "error-msg": "view-hidden"} aria-live="assertive">{errorMessage}</p>
@@ -228,8 +224,5 @@ const registerAccount = async (dataForm) => {
     )}
     </div>
   )
-}
-Signup.defaultProps = {
-
 }
 export default Signup

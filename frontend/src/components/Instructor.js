@@ -5,14 +5,17 @@ import Signup from "./Signup";
 
 
 const Instructor = () => {
-    const [name, setName] = useState('');
-const info = async () => {
-        const data = await userInfo(baseUrl, localStorage.getItem('user_token'))
-        setName(data.name);
-    }
-useEffect(() => {
-        info();
-    }, []);
+  const [name, setName] = useState('');
+
+  useEffect(() => {
+    info();
+  }, []);
+
+  const info = async () => {
+    const data = await userInfo(baseUrl, localStorage.getItem('user_token'))
+    setName(data.name);
+  }
+
   return (
     <div>
         <Navbar name={name} />

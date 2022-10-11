@@ -6,11 +6,13 @@ import FormTitle from "./FormTitle";
 import WaitingSection from "./WaitingSection";
 import { Link, useNavigate } from "react-router-dom";
 
+
 const Login = () => {
     // set focus when error occur
     const emailRef = useRef();
     const errorRef = useRef();
     const buttonRef = useRef();
+    
     const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
