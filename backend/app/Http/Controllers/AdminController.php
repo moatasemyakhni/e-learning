@@ -114,6 +114,6 @@ class AdminController extends Controller {
     }
 
     function displayInstructors() {
-        return User::where('type', 'instructor');
+        return User::where('type', 'instructor')->get();
     }
 }
