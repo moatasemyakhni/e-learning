@@ -77,7 +77,8 @@ useEffect(() => {
   return (
     <div>
         <Navbar name={name} />
-        <form onSubmit={assignCourseToInstructor}>
+
+        <form className="select-form" onSubmit={assignCourseToInstructor}>
             <select 
                 className="input"
                 onChange={(e) => setInstructor(e.target.value)}

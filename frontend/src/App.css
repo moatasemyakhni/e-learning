@@ -9,6 +9,7 @@
   background-color: #1B4659;
   color: white;
   padding: 10px;
+  margin: 30px 0;
 }
 
 .form {
@@ -162,4 +163,11 @@ a.form-link:hover {
 .flex button, .flex h3 {
   margin: 0;
   flex: 1;
+}
+
+.select-form {
+  margin: 20px;
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
 }

@@ -1,5 +1,5 @@
 import Navbar from "./instructor/Navbar";
-import { baseUrl, userInfo, postApi, getApi} from "../scripts/utilities";
+import { baseUrl, userInfo } from "../scripts/utilities";
 import { useEffect, useState } from "react";
 import Signup from "./Signup";
 

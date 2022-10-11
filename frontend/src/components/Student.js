@@ -1,5 +1,5 @@
-import Navbar from "./Navbar"
-import { baseUrl, userInfo, postApi, getApi} from "../scripts/utilities"
+import Navbar from "./student/Navbar";
+import { baseUrl, userInfo, postApi, getApi} from "../scripts/utilities";
 import { useEffect, useState } from "react";
 
 
