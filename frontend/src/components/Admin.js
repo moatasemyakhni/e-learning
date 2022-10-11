@@ -20,6 +20,7 @@ const Admin = () => {
             const url = baseUrl + "/auth/get_instructors";
             const getInstructors = await getApi(url, localStorage.getItem('user_token'));
             setInstructors(getInstructors);
+            setInstructor(getInstructors[0]._id);
             setSuccess(true);
         } catch (error) {
             setSuccess(false);
@@ -32,10 +33,12 @@ const Admin = () => {
             const url = baseUrl + "/auth/get_courses";
             const getCourses = await getApi(url, localStorage.getItem('user_token'));
             setCourses(getCourses);
+            setCourse(getCourses[0].code);
             setSuccess(true);
         } catch (error) {
             setSuccess(false);
             setErrorMessage('Server is down');
+
         }
     }
     
@@ -47,9 +50,7 @@ const Admin = () => {
             const dataForm = new FormData();
             dataForm.append('_id', instructor);
             dataForm.append('courses', course);
-            console.log(instructor, course, "this");
             const assign = await postApi(url, dataForm, localStorage.getItem('user_token'));
-            console.log(assign);
         } catch (error) {
             setErrorMessage(true);
             setSuccess(false);
@@ -65,11 +66,12 @@ const Admin = () => {
     }
 
 useEffect(() => {
-        info();
-        getInstructors();
-        getCourses();
-        setInstructor(instructors[0]._id);
-        setCourse(courses[0].code);
+   const x = async () => {
+        await info();
+        await getInstructors();
+        await getCourses();
+    }   
+    x();
     }, []);
 
   return (
@@ -87,8 +89,7 @@ useEffect(() => {
 
             <select 
                 className="input"
-                onChange={(e) => setCourse(e.target.value)}
-                >
+                onChange={(e) => setCourse(e.target.value)}>
                 {
                     courses.map(course => <option value={course.code}>{course.code}</option>)
                 }
