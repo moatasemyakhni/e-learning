@@ -15,7 +15,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element= {<Login />} />
-          <Route path="/signup" element= {<Signup user_types={['student', 'instructor', 'admin']} />} />
+          <Route path="/signup" element= {<Signup user_types={['student', 'instructor', 'admin']} api={'register'} />} />
           <Route path="/landing" element= {<Landing />} />
           <Route path="/student/*" element= {<Student />} />
           <Route path="/instructor/*" element= {<Instructor />} />

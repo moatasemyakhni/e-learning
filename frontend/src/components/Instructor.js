@@ -15,7 +15,7 @@ useEffect(() => {
     <div>
         <Navbar name={name} />
 
-        <Signup user_types={['student']} />
+        <Signup user_types={['student']} api={'register_student'} />
     </div>
   )
 }

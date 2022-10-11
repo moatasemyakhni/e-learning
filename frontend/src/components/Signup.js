@@ -7,7 +7,7 @@ import Button from './Button';
 import { Link, useNavigate } from "react-router-dom";
 
 
-function Signup({user_types}) {
+function Signup({user_types, api}) {
     // set focus on load
     const fullNameRef = useRef();
     const errorRef = useRef();
@@ -135,7 +135,7 @@ const checkEmailExistance = async (dataForm) => {
 }
 
 const registerAccount = async (dataForm) => {
-    const url = baseUrl + "/auth/register";
+    const url = baseUrl + `/auth/${api}`;
     const response = await axios.post(url, dataForm);
     const result = response.data;
     return result;
