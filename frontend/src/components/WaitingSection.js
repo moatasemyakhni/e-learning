@@ -1,4 +1,5 @@
 
+
 const WaitingSection = () => {
   return (
     <section>
