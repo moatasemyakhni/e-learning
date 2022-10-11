@@ -76,10 +76,11 @@ class AdminController extends Controller {
         $courses = request()->get('courses');
 
         $instructor = User::find($instructor_id);
-        // course already assigned to instructor
         if(is_null($instructor->courses)) {
             $instructor->courses = [];
         }
+        
+        // check if course already assigned to instructor
         if(in_array($courses, $instructor->courses)) {
             return response()->json([
                 'error' => true,
@@ -106,5 +107,13 @@ class AdminController extends Controller {
             return false;
         }
         return true;
+    }
+
+    function displayCourses() {
+        return Course::all();
+    }
+
+    function displayInstructors() {
+        return User::where('type', 'instructor');
     }
 }
