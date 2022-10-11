@@ -5,7 +5,7 @@ import Landing from './components/Landing';
 import Student from './components/Student';
 import StudentAssignment from './components/student/StudentAssignment';
 import StudentCourse from './components/student/StudentCourse';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import StudentAnnouncements from './components/student/StudentAnnouncements';
 import Instructor from './components/Instructor';
 import InstructorAssignment from './components/instructor/InstructorAssignment';
