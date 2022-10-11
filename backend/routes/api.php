@@ -22,9 +22,8 @@ Route::group([
         Route::post('register_people', [AdminController::class, 'register']);
         Route::post('assign_course', [AdminController::class, 'assignCourseToInstructor']);
         Route::post('register_course', [AdminController::class, 'registerCourse']);
-        
-displayInstructors
-        Route::get('courses', [AdminController::class, 'displayCourses']);
+        Route::get('get_instructors', [AdminController::class, 'displayInstructors']);
+        Route::get('get_courses', [AdminController::class, 'displayCourses']);
     });
 
     Route::group(['middleware' => 'instructor'], function() {
