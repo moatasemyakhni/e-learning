@@ -8,7 +8,7 @@ import StudentCourse from './components/student/StudentCourse';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StudentAnnouncements from './components/student/StudentAnnouncements';
 import Instructor from './components/Instructor';
-import InstructorCourse from './components/instructor/InstructorCourse';
+import InstructorAssignment from './components/instructor/InstructorAssignment';
 import InstructorAnnouncements from './components/instructor/InstructorAnnouncements';
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
         </Routes>
 
         <Routes>
-          <Route path="/instructor/courses" element= {<InstructorCourse />} />
+          <Route path="/instructor/assignments" element= {<InstructorAssignment />} />
           <Route path="/instructor/announcements" element= {<InstructorAnnouncements />} />
         </Routes>
       </div>

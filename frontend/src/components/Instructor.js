@@ -1,7 +1,9 @@
-import Navbar from "./instructor/Navbar"
-import { baseUrl, userInfo, postApi, getApi} from "../scripts/utilities"
+import Navbar from "./instructor/Navbar";
+import { baseUrl, userInfo, postApi, getApi} from "../scripts/utilities";
 import { useEffect, useState } from "react";
 import Signup from "./Signup";
+
+
 const Instructor = () => {
     const [name, setName] = useState('');
 const info = async () => {
@@ -15,7 +17,7 @@ useEffect(() => {
     <div>
         <Navbar name={name} />
 
-        <Signup user_types={['student']} api={'register_student'} />
+        {/* <Signup user_types={['student']} api={'register_student'} /> */}
     </div>
   )
 }

@@ -12,6 +12,13 @@ export const emptyField = (props) => {
     return false;
 }
 
+export const emptyFieldCommand = (props) => {
+    if( props.title === '' || props.description === '') {
+        return true
+    }
+    return false;
+}
+
 export const fullNameValidate = (name) => {
     if(name === '') {
         return false;
