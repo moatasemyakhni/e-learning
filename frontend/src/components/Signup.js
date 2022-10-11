@@ -77,16 +77,16 @@ const signupForm = async (e) => {
     try {
         const checkEmail = await checkEmailExistance(formData);
         if(!checkEmail.available) {
+            buttonRef.current.disabled = false;
             setErrorMessage('Email is taken');
             setSuccess(false);
             return;
         }
     }catch(err) {
+        buttonRef.current.disabled = false;
         setErrorMessage('Server is not responding');
         setSuccess(false);
         return;
-    }finally {   
-        buttonRef.current.disabled = false;
     }
     buttonRef.current.disabled = true;
     formData.append('name', fullName);

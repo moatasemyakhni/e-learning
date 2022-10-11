@@ -12,7 +12,7 @@ const Login = () => {
     const emailRef = useRef();
     const errorRef = useRef();
     const buttonRef = useRef();
-    
+
     const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
@@ -59,14 +59,13 @@ const Login = () => {
                     navigate('/instructor');
                 return;
             }
-            
+            buttonRef.current.disabled = false;
             setErrorMessage("Wrong Email or Password");
             setSuccess(false);
         } catch(err) {
+            buttonRef.current.disabled = false;
             setErrorMessage("Server is not responding");
             setSuccess(false);
-        }finally {
-            buttonRef.current.disabled = false;
         }
        
     }

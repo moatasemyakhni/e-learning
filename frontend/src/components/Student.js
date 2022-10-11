@@ -53,14 +53,18 @@ const Student = () => {
   return (
     <div>
         <Navbar name={name} />
-        <h2>Enroll in Course</h2>
-        <span>course name</span>
-        <select onChange={(e) => setEnrollCourse(e)} className="btn">
-          {
-             courses.map(course => <option value={course.code}>{course.code}</option>)
-          }
-        </select>
-        <button onClick={() => enroll(enrollCourse)} className="btn">Enroll</button>
+        <div className="wrapper">
+          <h2 className="title">Enroll in Course</h2>
+          <p>course name</p>
+          <div>
+            <select onChange={(e) => setEnrollCourse(e)} className="btn">
+              {
+                courses.map(course => <option value={course.code}>{course.code}</option>)
+              }
+            </select>
+            <button onClick={() => enroll(enrollCourse)} className="btn">Enroll</button>
+          </div>
+        </div>
     </div>
   )
 }

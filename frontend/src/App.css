@@ -134,6 +134,32 @@ a.form-link:hover {
   background-color: #00ffff91;
 }
 
+.title {
+  margin: 20px 0;
+}
+
 .view-none {
   display: none;
+}
+
+.wrapper > div {
+  margin-left: 5px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px
+}
+
+.wrapper > div select, .wrapper > div button {
+  margin: 0;
+}
+
+.flex {
+  display: flex;
+  gap: 10px;
+  margin: 20px;
+}
+
+.flex button, .flex h3 {
+  margin: 0;
+  flex: 1;
 }

@@ -60,8 +60,11 @@ const StudentAssignment = () => {
         ): (
           assignment.map((assign) => {
             return (<div>
-            <h3>{assign.title}</h3>
-            <button className="btn" onClick={(e) => submitAssignment(e, assign._id)}>Submit</button>
+              <div className="flex">
+                <h3>{assign.title}</h3>
+                <button button className="btn" onClick={(e) => submitAssignment(e, assign._id)}>Submit</button>  
+              </div>
+            
             </div>
             )
           })
