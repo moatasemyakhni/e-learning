@@ -1,7 +1,6 @@
 import './App.css';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import Landing from './components/Landing';
 import Student from './components/Student';
 import StudentAssignment from './components/student/StudentAssignment';
 import StudentCourse from './components/student/StudentCourse';
@@ -13,35 +12,35 @@ import InstructorAnnouncements from './components/instructor/InstructorAnnouncem
 import Admin from './components/Admin';
 import AdminAddPeople from './components/admin/AdminAddPeople';
 import AdminAddCourse from './components/admin/AdminAddCourse';
-function App() {
+
+
+const App = () => {
   return (
-      <div className="App">
-        <Routes>
-          <Route path="/" element= {<Login />} />
-          <Route path="/signup" element= {<Signup user_types={['student', 'instructor', 'admin']} api={'register'} />} />
-          <Route path="/landing" element= {<Landing />} />
-          <Route path="/student/*" element= {<Student />} />
-          <Route path="/instructor/*" element= {<Instructor />} />
-          <Route path="/admin/*" element= {<Admin />} />
-          
-        </Routes>
-        
-        <Routes>
-          <Route path="/student/assignments" element= {<StudentAssignment />} />
-          <Route path="/student/courses" element= {<StudentCourse />} />
-          <Route path="/student/announcements" element= {<StudentAnnouncements />} />
-        </Routes>
+    <div className="App">
+      <Routes>
+        <Route path="/" element= {<Login />} />
+        <Route path="/signup" element= {<Signup user_types={['student', 'instructor', 'admin']} api={'register'} />} />
+        <Route path="/student/*" element= {<Student />} />
+        <Route path="/instructor/*" element= {<Instructor />} />
+        <Route path="/admin/*" element= {<Admin />} />       
+      </Routes>
+      
+      <Routes>
+        <Route path="/student/assignments" element= {<StudentAssignment />} />
+        <Route path="/student/courses" element= {<StudentCourse />} />
+        <Route path="/student/announcements" element= {<StudentAnnouncements />} />
+      </Routes>
 
-        <Routes>
-          <Route path="/instructor/assignments" element= {<InstructorAssignment />} />
-          <Route path="/instructor/announcements" element= {<InstructorAnnouncements />} />
-        </Routes>
+      <Routes>
+        <Route path="/instructor/assignments" element= {<InstructorAssignment />} />
+        <Route path="/instructor/announcements" element= {<InstructorAnnouncements />} />
+      </Routes>
 
-        <Routes>
-          <Route path="/admin/people" element= {<AdminAddPeople />} />
-          <Route path="/admin/course" element= {<AdminAddCourse />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/admin/people" element= {<AdminAddPeople />} />
+        <Route path="/admin/course" element= {<AdminAddCourse />} />
+      </Routes>
+    </div>
   );
 }
 
