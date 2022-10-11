@@ -8,12 +8,14 @@ import StudentCourse from './components/student/StudentCourse';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StudentAnnouncements from './components/student/StudentAnnouncements';
 import Instructor from './components/Instructor';
+import InstructorCourse from './components/instructor/InstructorCourse';
+import InstructorAnnouncements from './components/instructor/InstructorAnnouncements';
 function App() {
   return (
       <div className="App">
         <Routes>
           <Route path="/" element= {<Login />} />
-          <Route path="/signup" element= {<Signup />} />
+          <Route path="/signup" element= {<Signup user_types={['student', 'instructor', 'admin']} />} />
           <Route path="/landing" element= {<Landing />} />
           <Route path="/student/*" element= {<Student />} />
           <Route path="/instructor/*" element= {<Instructor />} />
@@ -24,6 +26,11 @@ function App() {
           <Route path="/student/assignments" element= {<StudentAssignment />} />
           <Route path="/student/courses" element= {<StudentCourse />} />
           <Route path="/student/announcements" element= {<StudentAnnouncements />} />
+        </Routes>
+
+        <Routes>
+          <Route path="/instructor/courses" element= {<InstructorCourse />} />
+          <Route path="/instructor/announcements" element= {<InstructorAnnouncements />} />
         </Routes>
       </div>
   );

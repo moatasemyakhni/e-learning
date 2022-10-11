@@ -7,7 +7,7 @@ import Button from './Button';
 import { Link, useNavigate } from "react-router-dom";
 
 
-function Signup() {
+function Signup({user_types}) {
     // set focus on load
     const fullNameRef = useRef();
     const errorRef = useRef();
@@ -18,7 +18,7 @@ function Signup() {
 
     const [email, setEmail] = useState('');
 
-    const [type, setType] = useState('student');
+    const [type, setType] = useState(user_types[0]);
 
     const [password, setPassword] = useState('');
 
@@ -213,9 +213,9 @@ const registerAccount = async (dataForm) => {
                         Type:
                     </label>
                     <select className='input' name='type' id='type' defaultValue={type} onChange={(e) => setType(e.target.value)}>
-                        <option value="student">Student</option>
-                        <option value="instructor">Instructor</option>
-                        <option value="admin">Admin</option>
+                        {
+                            user_types.map(type => <option value={type}>{type}</option>)
+                        }
                     </select>
                 </div>
 
