@@ -1,7 +1,7 @@
 # e-learning
 
 ## **Inroduction**
-E-learning is a full-stack website that allows each students, instructors and admins do various and different things.
+E-learning is a full-stack website that allows students, instructors and admins to do various things.
 
 ### The admin can:
 - add instructors, students and courses
